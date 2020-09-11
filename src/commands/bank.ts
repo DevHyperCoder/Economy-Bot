@@ -1,7 +1,9 @@
-import { Message } from "discord.js";
+import { Message, MessageEmbed } from "discord.js";
+import { getUser } from '../entityHelpers/UserHelper'
 
-export default function bank(msg:Message,args:string[]){
-    console.log(msg.channel)
-    console.log(msg.content)
-    console.log(msg.reply(msg.content))
+export default async function bank(msg: Message, args: string[]) {
+    const user = (await getUser(msg.author.id));
+    const embed = new MessageEmbed()
+    embed.setTitle(`${msg.author.id}'s Bank Balance`)
+    embed.addField("Bank Balance", user.bank)
 }
