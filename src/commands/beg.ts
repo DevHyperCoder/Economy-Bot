@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, MessageEmbed } from "discord.js";
 import { getUser } from '../entityHelpers/UserHelper'
 import wallet from "./wallet";
 
@@ -17,6 +17,10 @@ export default async function beg(msg: Message, args: string[]) {
     user.wallet += random;
     await user.save()
 
-    // dispay the balance
-    wallet(msg, args);
+    // Generate the embed and reply
+    const embed = new MessageEmbed();
+    embed.setTitle('Reward!!')
+    embed.addField('Reward',random);
+
+    msg.reply(embed);
 }
