@@ -17,6 +17,6 @@ export async function checkIfUserExists(discordId: string): Promise<Boolean> {
 }
 
 export async function getUser(discordId:string):Promise<User>{
-    const user = await User.findOne({discordId});
-    return user;
+    return await User.findOne({discordId});
+    
 }
