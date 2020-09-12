@@ -6,6 +6,7 @@ import { createConnection } from "typeorm";
 import bank from './commands/bank';
 import wallet from './commands/wallet'
 import beg from './commands/beg';
+import transfer from './commands/transfer'
 
 // Import entities
 import {User} from './entities/User'
@@ -52,18 +53,19 @@ client.on('message',async msg => {
     // Switch based on command
     switch(command){
         case "bank":
-            bank(msg,args)
+            await bank(msg,args)
             break;
-        
         case "wallet":
-            wallet(msg,args)
+            await wallet(msg,args)
             break;
         case 'beg':
-            beg(msg,args);
+            await beg(msg,args);
             break;
-
+        case 'transfer':
+            await transfer(msg,args)
+            break;
         case "help":
-            msg.reply("Developer is working on it")
+            await msg.reply("Developer is working on it")
             break;
         default:
             msg.reply('Please use a valid command')
